@@ -45,10 +45,18 @@ model.addAttribute("books",books);
 }
 @GetMapping(path="/books/delete/{id}")
 public String deleteBook(@PathVariable(name="id")Integer id,Model model) {
-	Book book=new Book();
-	model.addAttribute("book",book);
-	System.out.println(id);
-	return "new-book";
+	boolean bookExists=bookDAO.findById(id).isPresent();
+	if(bookExists) {
+		bookDAO.deleteById(id);
+	}else {
+		
+	}
+	
+	
+	List<Book>books=bookDAO.findAll();
+	model.addAttribute("books",books);
+	
+	return "redirect:/books";
 
 }
 }
