@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 <meta charset="ISO-8859-1">
 <title>Kitablar</title>
 <style >
@@ -14,7 +16,7 @@ td:hover{color:blue;cursor:pointer;}
 background-color:rgb(144,217,71);width:100px;text-align:center;
 border-radius:10px;text-decoration: none;}
 #new-book-button:hover{background-color:rgb(144,217,71);cursor:pointer;}
-
+a{margin-right:5px;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -43,6 +45,7 @@ $('#books-table').DataTable();
 <th>Müəllif</th>
 <th>Səhifə sayı</th>
 <th>Şəkil</th>
+<th>"Əməliyyat "</th>
 </tr>
 </thead>
 <tbody>
@@ -54,6 +57,9 @@ $('#books-table').DataTable();
 <td th:text=${book.author}></td>
 <td th:text=${book.pageCount}></td>
 <td th:text=${book.image}></td>
+<td ><a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger">Sil</a><a class="btn btn-primary">Redaktə</a></td>
+
+
 
 </tr>
 </tbody>
