@@ -3,20 +3,38 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Yeni kitab</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>#book-register-form{width:300px;margin:auto;}</style>
 </head>
 <body>
-<h1>Yeni kitab Qeydiyyati</h1>
-<form th:action="@{/books/new-book-process}"method="POST" th:object="${book}">
+<h1 style="text-align: center;" >Yeni kitab Qeydiyyati</h1>
+
+<form th:action="@{/books/new-book-process}"method="POST" th:object="${book}" id="book-register-form">
+<div class="form-group">
 <label for="book-name">Ad:</label>
-<input id="book-name" th:field="*{name}"/>
+<input class="form-control" id="book-name" th:field="*{name}"/>
+</div>
+
+<div class="form-group">
 <label for="book-description">Təsvir:</label>
-<textarea id="book-description"th:field="*{description}"></textarea>
+<textarea class="form-control" id="book-description"th:field="*{description}"></textarea>
+</div>
+
+<div class="form-group">
 <label for="book-price">Qiymət:</label>
-<input type="number" id="book-price" th:field="*{price}"/>
+<input class="form-control" type="number" id="book-price" th:field="*{price}"/>
+</div>
+
+<div class="form-group">
 <label for="book-author">Müəllif:</label>
-<input id="book-author" th:field="*{author}"/>
+<input class="form-control"  id="book-author" th:field="*{author}"/>
+</div>
+
+<div class="form-group">
 <label for="book-page-count">Səhifə sayı:</label>
-<input type="number" id="book-page-count" th:field="*{pageCount}"/>
+<input class="form-control" type="number" id="book-page-count" th:field="*{pageCount}"/>
+</div>
+
 
 <input type="submit" value="Qeydiyyat"/>
 
