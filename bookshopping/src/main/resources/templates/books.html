@@ -7,7 +7,7 @@
 table,th,td{ 
 border:1px solid white;}
 table{border-collapse:collapse;width:100%;}
-th{padding:5px;background-color:activeborder;}
+th{padding:5px;background-color:blue;}
 td{padding:5px;background-color:tomato;color:white;}
 td:hover{color:blue;cursor:pointer;}
 #new-book-button{display:block;padding:5px 10px;
@@ -26,6 +26,9 @@ border-radius:10px;text-decoration: none;}
 <th>Ad</th>
 <th>Təsvir</th>
 <th>Qiymət</th>
+<th>Müəllif</th>
+<th>Səhifə sayı</th>
+<th>Şəkil</th>
 </tr>
 </thead>
 <tbody>
@@ -34,6 +37,10 @@ border-radius:10px;text-decoration: none;}
 <td th:text=${book.name}></td>
 <td th:text=${book.description}></td>
 <td th:text=${book.price}></td>
+<td th:text=${book.author}></td>
+<td th:text=${book.pageCount}></td>
+<td th:text=${book.image}></td>
+
 </tr>
 </tbody>
 </table>
