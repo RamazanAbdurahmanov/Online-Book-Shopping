@@ -44,7 +44,7 @@ public class BookController {
 		List<Book> books = bookDAO.findAll();
 		model.addAttribute("books", books);
 
-		return "books";
+		return "redirect:/books";
 
 	}
 
