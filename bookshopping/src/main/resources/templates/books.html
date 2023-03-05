@@ -9,14 +9,11 @@
 <style >
 table,th,td{ 
 border:1px solid white;}
-table{border-collapse:collapse;width:100%;}
+#books-table{border-collapse:collapse;width:100%;}
 th{padding:5px;background-color:blue;}
 td{padding:5px;background-color:tomato;color:white;}
 td:hover{color:blue;cursor:pointer;}
-#new-book-button{display:block;padding:5px 10px;
-background-color:rgb(144,217,71);width:100px;text-align:center;
-border-radius:10px;text-decoration: none;}
-#new-book-button:hover{background-color:rgb(144,217,71);cursor:pointer;}
+
 
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -34,9 +31,11 @@ $('#books-table').DataTable();
 </script>
 </head>
 <body>
+<div class="container-fluid">
 <div th:replace="menu::menu"> </div>
-<a th:href="@{/books/new}"id="new-book-button">Yeni kitab</a>
-<a th:href="@{/home}">Əsas səhifə</a>
+<a class="btn btn-success" th:href="@{/books/new}">Yeni kitab</a>
+<a class="btn btn-primary" th:href="@{/home}">Əsas səhifə</a>
+<div style="height:5px;"></div>
 <table id="books-table">
 <thead>
 <tr>
@@ -62,12 +61,12 @@ $('#books-table').DataTable();
 <td ><a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger"
 th:onclick="if((!confirm('Kitabı silməyə əminsiz?')))return false" >Sil</a>
 <a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn btn-primary">Redaktə</a></td>
-
-
-
 </tr>
 </tbody>
 </table>
+ </div>
+
+
 
 </body>
 </html>

@@ -3,12 +3,15 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <meta charset="ISO-8859-1">
-<title>Home Page</title>
+<title>Ana Səhifə</title>
 </head>
 <body>
 <div th:replace="menu::menu"> </div>
-<a th:href="@{/books}">Kitabların siyahısı</a><br>
-<a th:href="@{/logout}">Çıxış</a>
+<h1>Kitab Alış-verişi saytımıza xoş gəlmisiniz</h1>
+<a class="btn btn-primary" th:href="@{/books}">Kitabların siyahısı</a>
+<a class="btn btn-warning" th:href="@{/customer}">Kitab Alış-verişinə başla</a>
+<a class="btn btn-success" th:href="@{/orders}">Sifarişlər</a>
+<a class="btn btn-danger" th:href="@{/logout}">Çıxış</a>
 
 
 </body>
