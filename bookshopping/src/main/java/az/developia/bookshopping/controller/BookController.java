@@ -19,7 +19,7 @@ public class BookController {
 	@Autowired
 	private BookDAO bookDAO;
 
-	@GetMapping(path = "books")
+	@GetMapping(path = "/books")
 	public String showBooks(Model model) {
 		List<Book> books = bookDAO.findAll();
 		model.addAttribute("books", books);
