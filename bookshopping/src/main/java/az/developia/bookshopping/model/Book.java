@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
@@ -28,6 +31,9 @@ public class Book {
 	@Column(columnDefinition = "VARCHAR(200)")
 	@Size(max=300,message="Maksiumum 200 simvol yaza bilersiz")
 	private String description;
+	@Min(value=0,message="Minimum 0 qiymet vermek olar")
+	@Max(value=1000,message="Maksimum 1000 qiymet vermek olar")
+    @NotNull(message="boş qoymaq olmaz!")
 	private Double price;
 	private String author;
 	private Integer pageCount;
@@ -35,3 +41,4 @@ public class Book {
 	private String username;
 
 }
+  
