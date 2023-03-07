@@ -35,6 +35,9 @@ public class Book {
 	@Max(value=1000,message="Maksimum 1000 qiymet vermek olar")
     @NotNull(message="boş qoymaq olmaz!")
 	private Double price;
+	@NotEmpty(message="Boş qoymaq olmaz")
+	@Size(min=2, message="Minimum 2 simvol yazila biler")
+	@Size(max=30, message="maksimum 30 simvol yazila biler")
 	private String author;
 	private Integer pageCount;
 	private String image;
