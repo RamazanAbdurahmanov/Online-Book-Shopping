@@ -39,6 +39,8 @@ public class Book {
 	@Size(min=2, message="Minimum 2 simvol yazila biler")
 	@Size(max=30, message="maksimum 30 simvol yazila biler")
 	private String author;
+	@Min(value=1,message="Səhifə sayı minimum 1 ola bilər")
+	@Max(value=10000,message="Səhifə sayı minimum 10000 ola bilər")
 	private Integer pageCount;
 	private String image;
 	private String username;
