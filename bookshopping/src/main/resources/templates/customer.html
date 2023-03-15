@@ -22,21 +22,28 @@
 	<div id="main-content">
 		
 	</div>
-	<button type="button" data-toggle="modal" data-target="#basketModal"
+	<button type="button" data-toggle="modal" data-target="#basketModal" onclick="openBasket()"
 	 id='open-basket-btn'class='btn btn-primary'>Səbət 
 <span class='badge badge-light' id="basket-book-count">0</span></button>
 <input id='search-input' class='form-control' placeholder='Axtarış'/>
 
 
 <div class="modal fade" id="basketModal">
-<div class="modal-dialog">
+<div class="modal-dialog modal-lg">
 <div class="modal-content">
 <div class="modal-header">
 <h1 class="modal-title">Səbət</h1>
 <button type="button" class="close" data-dismiss="modal">x</button>
 </div>
 <div class="modal-body">
-Səbət cədvəli burada olacaq
+
+<table class="table table-hover table-bordered">
+<thead>
+<tr><th>ID</th><th>Adı</th><th>Qiyməti</th><th>Miqdarı</th><th>Ümumi qiymət</th><th></th></tr>
+</thead>
+<tbody id="basket-books-table">
+</tbody>
+</table>
 
 </div>
 <div class="modal-footer">
@@ -49,14 +56,16 @@ Səbət cədvəli burada olacaq
 	//JAVASCRIPT BEGIN
 	//REFRESH BEGIN
 	var xht = new XMLHttpRequest();
-	var booksArrayGlobal;
+	var booksArrayGlobal=[];
 	var basketBooks=[];
-	var basketBooksFromStorage=localStorage.getItem('basketBooks');
+	var basketBooksFromStorage=localStorage.getItem('basketBooks');	
 	if(basketBooksFromStorage==null){localStorage.setItem('basketBooks','[]');}
 	else{basketBooks=JSON.parse(basketBooksFromStorage);
 	}
 	var openBasketButton=document.getElementById('open-basket-btn');
 	var basketBookCount=document.getElementById('basket-book-count');
+	var basketBooksTable=document.getElementById('basket-books-table');
+	
 	basketBookCount.innerHTML=basketBooks.length;
 	xht.onreadystatechange = function(){
 	if(this.readyState == 4 && this.status == 200){
@@ -113,7 +122,7 @@ mainContent.innerHTML=mainContentHTML;
 	if(booksArrayGlobal[i].id==bookId){
 	var basketBook={count:1,book:booksArrayGlobal[i]};
 	basketBooks.push(basketBook);
-	break
+	break;
 	}
 	}
 	}
@@ -124,6 +133,21 @@ mainContent.innerHTML=mainContentHTML;
 	    localStorage.setItem('basketBooks',JSON.stringify(basketBooks));
 	    setTimeout(function(){openBasketButton.style.display='block';},300);
 	}
+function openBasket(){
+    var basketBooksTableHTML="";
+    for(var i=0;i<basketBooks.length;i++){
+        var basketBook=basketBooks[i];
+        basketBooksTableHTML+="<tr><td>"+basketBook.book.id;
+        basketBooksTableHTML+="</td><td>"+basketBook.book.name;
+        basketBooksTableHTML+="</td><td>"+basketBook.book.price;
+        basketBooksTableHTML+="</td><td>"+basketBook.book.count;
+        basketBooksTableHTML+="</td><td>"+(basketBook.book.price*basketBook.count);
+        basketBooksTableHTML+="</td><td><button class='btn btn-danger'>X</button>";
+        basketBooksTableHTML+="</td></tr>";
+    }
+    basketBooksTable.innerHTML=basketBooksTableHTML;
+}
+
 	//FUNCTIONS END
 	//JAVASCRIPT END
 	</script>
