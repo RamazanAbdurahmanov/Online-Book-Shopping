@@ -14,7 +14,7 @@ th{padding:5px;background-color:blue;}
 td{padding:5px;background-color:tomato;color:white;}
 td:hover{color:blue;cursor:pointer;}
 #username{display: inline-block;padding: 5px;font-size:22px;font-weight: bold;margin:0;}
-
+.book-image{width:40px;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -58,7 +58,13 @@ $('#books-table').DataTable();
 <td th:text=${book.price}></td>
 <td th:text=${book.author}></td>
 <td th:text=${book.pageCount}></td>
-<td th:text=${book.image}></td>
+
+
+<td><img class="book-image"
+th:src="@{'/files/'+${book.image}}"/></td>
+
+
+
 <td ><a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn btn-danger"
 th:onclick="if((!confirm('Kitabı silməyə əminsiz?')))return false" >Sil</a>
 <a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn btn-primary">Redaktə</a></td>
