@@ -58,6 +58,9 @@
 	width: 100%;
 	background-color: gray;
 	height: 120px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 }
 .book-image,.book-price,.book-description,.book-author,.book-page-count{display: block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
   .book-name::before{

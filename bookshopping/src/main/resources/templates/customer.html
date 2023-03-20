@@ -10,6 +10,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<link th:href="@{/styles/customer.css}" rel="stylesheet"/>
 <style>
+.basket-book-image{width:50px;}
 
 </style>
 
@@ -39,7 +40,7 @@
 
 <table class="table table-hover table-bordered">
 <thead>
-<tr><th>ID</th><th>Adı</th><th>Qiyməti</th><th>Miqdarı</th><th>Ümumi qiymət</th><th></th></tr>
+<tr><th>ID</th><th>Şəkil</th><th>Adı</th><th>Qiyməti</th><th>Miqdarı</th><th>Ümumi qiymət</th><th></th></tr>
 </thead>
 <tbody id="basket-books-table">
 </tbody>
@@ -80,7 +81,7 @@ for(var i=0;i<booksArray.length;i++){
 var book=booksArray[i];
 mainContentHTML+="<div class='book-container'>";
 mainContentHTML+="<div class='book'>";
-mainContentHTML+="<span class='book-image'></span>";
+mainContentHTML+="<span class='book-image' style='background-image:url(/files/"+book.image+");'></span>";
 mainContentHTML+="<span class='book-name' title='"+
 book.name+"'>"+book.name+"</span>";
 mainContentHTML+="<span class='book-price' title='"+
@@ -138,6 +139,8 @@ function openBasket(){
     for(var i=0;i<basketBooks.length;i++){
         var basketBook=basketBooks[i];
         basketBooksTableHTML+="<tr><td>"+basketBook.book.id;
+        basketBooksTableHTML+="</td><td>"+
+        "<img class ='basket-book-image' src='/files/"+basketBook.book.image+"'/>";
         basketBooksTableHTML+="</td><td>"+basketBook.book.name;
         basketBooksTableHTML+="</td><td>"+basketBook.book.price;
         basketBooksTableHTML+="</td><td>"+basketBook.book.count;
