@@ -10,5 +10,22 @@
 <h1>Sifarişlər</h1>
 
 
+<table id="order-table" class="table table-hover table-bordered">
+<thead>
+<tr>
+<th>ID</th>
+<th>Tarix</th>
+
+</tr>
+</thead>
+<tbody>
+<tr th:each="order :${orders}">
+<td th:text=${order.id}></td>
+<td th:text=${order.register}></td>
+
+</tr>
+</tbody>
+</table>
+
 </body>
 </html>
