@@ -1,6 +1,7 @@
 package az.developia.bookshopping.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,13 +16,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import lombok.Data;
 
 
 
 @Entity
 @Table(name="orders")
-@Data
+
 public class Order {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +37,55 @@ private Customer customer;
 @JoinColumn(name="order_id")
 private List<BasketBook> basketBooks;
 private String username;
+public Integer getId() {
+	return id;
+}
+public void setId(Integer id) {
+	this.id = id;
+}
+public String getNote() {
+	return note;
+}
+public void setNote(String note) {
+	this.note = note;
+}
+public Timestamp getRegister() {
+	return register;
+}
+public void setRegister(Timestamp register) {
+	this.register = register;
+}
+public Double getTotalPrice() {
+	return totalPrice;
+}
+public void setTotalPrice(Double totalPrice) {
+	this.totalPrice = totalPrice;
+}
+public Customer getCustomer() {
+	return customer;
+}
+public void setCustomer(Customer customer) {
+	this.customer = customer;
+}
+public List<BasketBook> getBasketBooks() {
+	if(basketBooks==null) {
+		basketBooks=new ArrayList<BasketBook>();
+		}
+		return basketBooks;
+	}
+	
+
+public void setBasketBooks(List<BasketBook> basketBooks) {
+	this.basketBooks = basketBooks;
+}
+public String getUsername() {
+	return username;
+}
+public void setUsername(String username) {
+	this.username = username;
+}
+ 
+
 
 
 }
