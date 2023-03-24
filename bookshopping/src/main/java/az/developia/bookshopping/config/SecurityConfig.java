@@ -25,6 +25,7 @@ protected void configure(HttpSecurity http) throws Exception {
  .antMatchers(HttpMethod.GET,"/confirm-order").permitAll()
  .antMatchers(HttpMethod.POST,"/rest/orders").permitAll()
  .antMatchers(HttpMethod.POST,"/rest/books/search").permitAll()
+ .antMatchers(HttpMethod.POST,"/rest/books/search-find-partial").permitAll()
 
  .anyRequest().authenticated()
  .and().formLogin().loginPage("/show-login")
