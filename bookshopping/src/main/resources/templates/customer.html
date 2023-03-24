@@ -16,7 +16,7 @@ font-size:24px;
 }
 </style>
 
-</head>
+</head>  
 <body>
 <!-- HTML BEGIN -->
 	<div th:replace="menu::menu"></div>
@@ -28,7 +28,7 @@ font-size:24px;
 	<button type="button" data-toggle="modal" data-target="#basketModal" onclick="openBasket()"
 	 id='open-basket-btn'class='btn btn-primary'>Səbət 
 <span class='badge badge-light' id="basket-book-count">0</span></button>
-<input id='search-input' class='form-control' placeholder='Axtarış'/>
+<input id='search-input' class='form-control' placeholder='Axtarış' onchange='searchBook(this.value)'/>
 
 
 <div class="modal fade" id="basketModal">
@@ -198,6 +198,13 @@ totalPriceNumber+=basketBook.count*basketBook.book.price;
 }
 totalPrice.innerHTML='Ümumi qiymət: '+totalPriceNumber+' AZN';
 
+}
+
+function searchBook(searchText){
+xht.open("POST","/rest/books/search",true);
+xht.setRequestHeader("Content-type","application/json");
+var searchObject={search:searchText};
+	xht.send(JSON.stringify(searchObject));
 }
 
 	//FUNCTIONS END
