@@ -1,5 +1,7 @@
 package az.developia.bookshopping.config;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
@@ -9,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import az.developia.bookshopping.model.BasketBook;
 import lombok.Getter;
 import lombok.Setter;
 @Getter
@@ -17,6 +20,8 @@ import lombok.Setter;
 @Scope(value= "session",proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class MySession {
 	private String username;
+	
+	private  List<BasketBook> basketBooks;
 
 	public MySession() {
 		System.out.println("My Session > constructor");

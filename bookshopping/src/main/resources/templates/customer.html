@@ -50,7 +50,7 @@ font-size:24px;
 <span id ="total-price"></span>
 </div>
 <div class="modal-footer">
-<a th:href="@{/confirm-order}" class="btn btn-success" >Sifarişi təsdiqlə</a>
+<button class="btn btn-success" onclick="confirmOrder()" >Sifarişi təsdiqlə</button>
 <button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
 </div>
 </div></div></div>
@@ -244,6 +244,24 @@ xht.open("POST","/rest/books/search-find-partial",true);
 }
 }
 window.addEventListener("scroll",onScroll);
+
+function confirmOrder(){
+var xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange=function(){
+if(this.readyState==4&&this.status==200){
+console.log(this.responseText);
+window.location.href="/confirm-order";
+
+}
+};
+
+
+xhttp.open("POST","/rest/orders/save-basket-books",true);
+	xhttp.setRequestHeader("Content-type","application/json");
+	xhttp.send(JSON.stringify(basketBooks));
+
+}
 
 	//FUNCTIONS END
 	//JAVASCRIPT END
