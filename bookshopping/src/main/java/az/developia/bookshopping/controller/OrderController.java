@@ -10,12 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import az.developia.bookshopping.config.MySession;
 import az.developia.bookshopping.dao.OrderDAO;
 import az.developia.bookshopping.model.BasketBook;
 import az.developia.bookshopping.model.Customer;
 import az.developia.bookshopping.model.Order;
+import az.developia.bookshopping.service.OrderService;
 
 @Controller
 public class OrderController {
@@ -25,7 +27,8 @@ public class OrderController {
 	@Autowired
 	private OrderDAO orderDAO;
 	
-	
+	@Autowired
+	private OrderService orderService;
 
 	@GetMapping(path ="/orders")
 	public String showOrdersPage(Model model) {
@@ -48,20 +51,14 @@ public class OrderController {
 
 	}
 	
-	@GetMapping(path ="/confirm-order-process")
-	public String ConfirmOrderProcess(@Valid @ModelAttribute(name="customer")Customer customer,BindingResult result) {
+	@PostMapping(path ="/confirm-order-process")
+	public String confirmOrderProcess(@Valid @ModelAttribute(name="customer")Customer customer,BindingResult result) {
          if(result.hasErrors()) {
         	 return "confirm-order";
          }
-        List<BasketBook> basketBooks= mySession.getBasketBooks();
-        Order order = new Order();
-        order.setCustomer(customer);
-        order.setBasketBooks(basketBooks);
-        order.setNote(customer.getNote());
-        
-        System.out.println(order);
-        
-		return "redirect:/";
+       orderService.save(customer);
+       
+		return "redirect:/order-confirmation-message";
 		
 		
 
