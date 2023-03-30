@@ -81,7 +81,8 @@ font-size:24px;
 	var responseJSON=this.responseText;
 	var booksArray=JSON.parse(responseJSON);
 		console.log(booksArray);
-		booksArrayGlobal=booksArray;
+		
+		booksArrayGlobal.push(...booksArray);
 		
 	var mainContent=document.getElementById('main-content');
 
@@ -224,6 +225,7 @@ totalPrice.innerHTML='Ümumi qiymət: '+totalPriceNumber+' AZN';
 function searchBook(searchText){
 searchTextGlobal=searchText;
 mainContentHTML="";
+booksArrayGlobal=[];
 xht.open("POST","rest/books/search-find-partial",true);
 xht.setRequestHeader("Content-type","application/json");
 begin=0;
