@@ -89,7 +89,7 @@ for(var i=0;i<booksArray.length;i++){
 var book=booksArray[i];
 mainContentHTML+="<div class='book-container'>";
 mainContentHTML+="<div class='book'>";
-mainContentHTML+="<span class='book-image' style='background-image:url(/files/"+book.image+");'></span>";
+mainContentHTML+="<span class='book-image' style='background-image:url(files/"+book.image+");'></span>";
 mainContentHTML+="<span class='book-name' title='"+
 book.name+"'>"+book.name+"</span>";
 mainContentHTML+="<span class='book-price' title='"+
@@ -109,7 +109,7 @@ mainContent.innerHTML=mainContentHTML;
 	
 	}
 	};
-	xht.open("POST","/rest/books/search-find-partial",true);
+	xht.open("POST","rest/books/search-find-partial",true);
 	xht.setRequestHeader("Content-type","application/json");
 	var searchObject={search:'',begin:begin,length:length};
 	xht.send(JSON.stringify(searchObject));
@@ -183,7 +183,7 @@ var basketBooksTableHTML="";
         var basketBook=basketBooks[i];
         basketBooksTableHTML+="<tr><td>"+basketBook.book.id;
         basketBooksTableHTML+="</td><td>"+
-        "<img class ='basket-book-image' src='/files/"+basketBook.book.image+"'/>";
+        "<img class ='basket-book-image' src='files/"+basketBook.book.image+"'/>";
         basketBooksTableHTML+="</td><td>"+basketBook.book.name;
         basketBooksTableHTML+="</td><td>"+basketBook.book.price;
         basketBooksTableHTML+="</td><td><input min='0' max='10000' step='1' "+
@@ -224,7 +224,7 @@ totalPrice.innerHTML='Ümumi qiymət: '+totalPriceNumber+' AZN';
 function searchBook(searchText){
 searchTextGlobal=searchText;
 mainContentHTML="";
-xht.open("POST","/rest/books/search-find-partial",true);
+xht.open("POST","rest/books/search-find-partial",true);
 xht.setRequestHeader("Content-type","application/json");
 begin=0;
 var searchObject={search:searchText,begin:begin,length:length};
@@ -247,7 +247,7 @@ console.log('onScroll: '+counter);
 
 begin+=20;
 
-xht.open("POST","/rest/books/search-find-partial",true);
+xht.open("POST","rest/books/search-find-partial",true);
 	xht.setRequestHeader("Content-type","application/json");
 	var searchObject={search:searchTextGlobal,begin:begin,length:length};
 	xht.send(JSON.stringify(searchObject));
@@ -265,13 +265,13 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange=function(){
 if(this.readyState==4&&this.status==200){
 console.log(this.responseText);
-window.location.href="/confirm-order";
+window.location.href="confirm-order";
 
 }
 };
 
 
-xhttp.open("POST","/rest/orders/save-basket-books",true);
+xhttp.open("POST","rest/orders/save-basket-books",true);
 	xhttp.setRequestHeader("Content-type","application/json");
 	xhttp.send(JSON.stringify(basketBooks));
 
