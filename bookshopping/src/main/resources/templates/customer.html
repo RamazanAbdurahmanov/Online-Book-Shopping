@@ -50,7 +50,7 @@ font-size:24px;
 <span id ="total-price"></span>
 </div>
 <div class="modal-footer">
-<button class="btn btn-success" onclick="confirmOrder()" >Sifarişi təsdiqlə</button>
+<button class="btn btn-success" onclick="confirmOrder()" id="confirm-order-btn" >Sifarişi təsdiqlə</button>
 <button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
 </div>
 </div></div></div>
@@ -145,7 +145,15 @@ mainContent.innerHTML=mainContentHTML;
 	    setTimeout(function(){openBasketButton.style.display='block';},300);
 	}
 function openBasket(){
+
  fillBasketTable();
+ if(basketBooks.length==0){
+ document.getElementById('confirm-order-btn').style.display='none';
+ }
+ else{
+  document.getElementById('confirm-order-btn').style.display='block';
+ 
+ }
     
 }
 function deleteBasketBook(bookId){
@@ -153,15 +161,21 @@ for(var i=0;i<booksArrayGlobal.length;i++){
 if(basketBooks[i].book.id==bookId){
 basketBooks.splice(i,1);
 break;
+
 }
 }
- fillBasketTable();
+ localStorage.setItem('basketBooks',JSON.stringify(basketBooks));
+
  openBasketButton.style.display='none';
  
 	    basketBookCount.innerHTML=basketBooks.length;
+	    if(basketBooks.length==0){
+	    document.getElementById('confirm-order-btn').style.display='none';
+	    }
+	    
 	    setTimeout(function(){openBasketButton.style.display='block';},300);
- localStorage.setItem('basketBooks',JSON.stringify(basketBooks));
- 
+  fillBasketTable();
+
 }
 function fillBasketTable(){
 var basketBooksTableHTML="";
@@ -172,7 +186,7 @@ var basketBooksTableHTML="";
         "<img class ='basket-book-image' src='/files/"+basketBook.book.image+"'/>";
         basketBooksTableHTML+="</td><td>"+basketBook.book.name;
         basketBooksTableHTML+="</td><td>"+basketBook.book.price;
-        basketBooksTableHTML+="</td><td><input "+
+        basketBooksTableHTML+="</td><td><input min='0' max='10000' step='1' "+
         "oninput='bookCountChange("+basketBook.book.id+",this.value)' type='number'value='"+basketBook.book.count;
         basketBooksTableHTML+="'/></td><td id='book"+basketBook.book.id+"'>"+
         (basketBook.book.price*basketBook.count);
