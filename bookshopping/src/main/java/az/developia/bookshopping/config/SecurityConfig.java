@@ -32,8 +32,8 @@ protected void configure(HttpSecurity http) throws Exception {
  .antMatchers(HttpMethod.POST,"/confirm-order-process").permitAll()
 
  .anyRequest().authenticated()
- .and().formLogin().loginPage("/show-login")
- .loginProcessingUrl("/authenticate-user").permitAll()
+ .and().formLogin()
+ .permitAll()
  .and().logout().permitAll();
 
 }
